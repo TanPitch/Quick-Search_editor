@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MD DB</title>
+  <link rel="stylesheet" href="editor.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+  <link href="https://cdn.jsdelivr.net/npm/hint.css@3.0.0/hint.min.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+  </script> -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+
+<body>
+  <div id="navBar">
+    <div style="font-weight: 800; margin-right: 40px">MD Editor</div>
+    <span class="hint--bottom hint--rounded" aria-label="bold">
+      <div class="btns" id="btn_bold"><span class="material-symbols-outlined">format_bold</span></div>
+    </span>
+    <span class="hint--bottom hint--rounded" aria-label="italic">
+      <div class="btns" id="btn_italic"><span class="material-symbols-outlined">format_italic</span></div>
+    </span>
+    <span class="hint--bottom hint--rounded" aria-label="strike">
+      <div class="btns" id="btn_strike"><span class="material-symbols-outlined">format_strikethrough</span></div>
+    </span>
+    <span class="hint--bottom hint--rounded" aria-label="underline">
+      <div class="btns" id="btn_underline"><span class="material-symbols-outlined">format_underlined</span></div>
+    </span>
+    <div class="separate">&nbsp;</div>
+    <div class="dropdown btns">
+      <span class="material-symbols-outlined dropbtn">format_h1</span>
+      <div class="dropdown-content">
+        <div class="btns" id="btn_header1"><span class="material-symbols-outlined">format_h1</span></div>
+        <div class="btns" id="btn_header2"><span class="material-symbols-outlined">format_h2</span></div>
+        <div class="btns" id="btn_header3"><span class="material-symbols-outlined">format_h3</span></div>
+        <div class="btns" id="btn_header4"><span class="material-symbols-outlined">format_h4</span></div>
+        <div class="btns" id="btn_header5"><span class="material-symbols-outlined">format_h5</span></div>
+        <div class="btns" id="btn_header6"><span class="material-symbols-outlined">format_h6</span></div>
+      </div>
+    </div>
+    <div class="dropdown btns">
+      <span class="material-symbols-outlined dropbtn">format_color_text</span>
+      <div class="dropdown-content wrap">
+        <div class="btns box" id="btn_text_black" style="background-color: #000;"></div>
+        <div class="btns box" id="btn_text_grey" style="background-color: #979A9B;"></div>
+        <div class="btns box" id="btn_text_brown" style="background-color: #937264;"></div>
+        <div class="btns box" id="btn_text_orange" style="background-color: #FFA344;"></div>
+        <div class="btns box" id="btn_text_yellow" style="background-color: #FFDC49;"></div>
+        <div class="btns box" id="btn_text_green" style="background-color: #4DAB9A;"></div>
+        <div class="btns box" id="btn_text_blue" style="background-color: #529CCA;"></div>
+        <div class="btns box" id="btn_text_purple" style="background-color: #9A6DD7;"></div>
+        <div class="btns box" id="btn_text_pink" style="background-color: #E255A1;"></div>
+        <div class="btns box" id="btn_text_red" style="background-color: #FF7369;"></div>
+      </div>
+    </div>
+    <div class="dropdown btns">
+      <span class="material-symbols-outlined dropbtn">format_ink_highlighter</span>
+      <div class="dropdown-content wrap">
+        <div class="btns box" id="btn_bg_none" style="background-color: #FFF;"></div>
+        <div class="btns box" id="btn_bg_grey" style="background-color: #454B4E;"></div>
+        <div class="btns box" id="btn_bg_brown" style="background-color: #594A3A;"></div>
+        <div class="btns box" id="btn_bg_orange" style="background-color: #594A3A;"></div>
+        <div class="btns box" id="btn_bg_yellow" style="background-color: #59563B;"></div>
+        <div class="btns box" id="btn_bg_green" style="background-color: #354C4B;"></div>
+        <div class="btns box" id="btn_bg_blue" style="background-color: #364954;"></div>
+        <div class="btns box" id="btn_bg_purple" style="background-color: #443F57;"></div>
+        <div class="btns box" id="btn_bg_pink" style="background-color: #533B4C;"></div>
+        <div class="btns box" id="btn_bg_red" style="background-color: #594141;"></div>
+      </div>
+    </div>
+    <div class="separate">&nbsp;</div>
+    <div class="dropdown btns">
+      <span class="material-symbols-outlined dropbtn">format_list_bulleted</span>
+      <div class="dropdown-content">
+        <div class="btns" id="btn_list_bullet"><span class="material-symbols-outlined">format_list_bulleted</span></div>
+        <div class="btns" id="btn_list_number"><span class="material-symbols-outlined">format_list_numbered</span></div>
+      </div>
+    </div>
+    <span class="hint--bottom hint--rounded" aria-label="checklist">
+      <div class="btns" id="btn_checklist"><span class="material-symbols-outlined">checklist</span></div>
+    </span>
+    <span class="hint--bottom hint--rounded" aria-label="quote">
+      <div class="btns" id="btn_quote"><span class="material-symbols-outlined">format_quote</span></div>
+    </span>
+    <span class="hint--bottom hint--rounded" aria-label="code">
+      <div class="btns" id="btn_code"><span class="material-symbols-outlined">code</span></div>
+    </span>
+    <span class="hint--bottom hint--rounded" aria-label="table">
+      <div class="btns" id="btn_table"><span class="material-symbols-outlined">table</span></div>
+    </span>
+    <span class="hint--bottom hint--rounded" aria-label="link">
+      <div class="btns" id="btn_link"><span class="material-symbols-outlined">link</span></div>
+    </span>
+    <span class="hint--bottom hint--rounded" aria-label="image">
+      <div class="btns" id="btn_image"><span class="material-symbols-outlined">image</span></div>
+    </span>
+    <div class="separate">&nbsp;</div>
+    <span class="hint--bottom hint--rounded" aria-label="new line">
+      <div class="btns" id="btn_br"><span class="material-symbols-outlined">vertical_align_bottom</span></div>
+    </span>
+    <span class="hint--bottom hint--rounded" aria-label="find">
+      <div class="btns" id="btn_find"><span class="material-symbols-outlined">search</span></div>
+    </span>
+    <span class="hint--bottom hint--rounded" aria-label="center">
+      <div class="btns" id="btn_center"><span class="material-symbols-outlined">align_horizontal_center</span></div>
+    </span>
+    <div class="dropdown btns">
+      <span class="material-symbols-outlined dropbtn">glyphs</span>
+      <div class="dropdown-content wrap">
+        <div class="btns box" id="btn_symbol_halflt">↶</div>
+        <div class="btns box" id="btn_symbol_halfrt">↷</div>
+        <div class="btns box" id="btn_symbol_fulllt">↺</div>
+        <div class="btns box" id="btn_symbol_fullrt">↻</div>
+        <div class="btns box" id="btn_symbol_up">↑</div>
+        <div class="btns box" id="btn_symbol_dn">↓</div>
+        <div class="btns box" id="btn_symbol_updb">⇑</div>
+        <div class="btns box" id="btn_symbol_dndb">⇓</div>
+        <div class="btns box" id="btn_symbol_upbar">↥</div>
+        <div class="btns box" id="btn_symbol_dnbar">↧</div>
+        <div class="btns box" id="btn_symbol_uptri">▲</div>
+        <div class="btns box" id="btn_symbol_dntri">▼</div>
+        <div class="btns box" id="btn_symbol_rtlt">⇄</div>
+        <div class="btns box" id="btn_symbol_ltrt">⇆</div>
+        <div class="btns box" id="btn_symbol_updn">⇅</div>
+        <div class="btns box" id="btn_symbol_dnup">⇵</div>
+        <div class="btns box" id="btn_symbol_ltcross">⇷</div>
+        <div class="btns box" id="btn_symbol_rtcross">⇸</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <textarea id="input_area" placeholder="Type here..."></textarea>
+    <div id="disp_area"></div>
+  </div>
+  <script src="editor.js"></script>
+</body>
+
+</html>
