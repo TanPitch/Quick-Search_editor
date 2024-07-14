@@ -56,6 +56,10 @@
   background: var(--h1);
 }
 
+ul {
+  margin: 0;
+}
+
 h1,
 h2,
 h3 {
