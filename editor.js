@@ -1,6 +1,56 @@
 const textArea = document.querySelector("#input_area");
 const dispArea = document.querySelector("#disp_area");
 
+// style the table
+function tableStyle() {
+  document.querySelectorAll("table").forEach((table) => {
+    let alignToTop = false;
+    table.querySelectorAll("tbody td").forEach((td) => {
+      const lines = td.innerHTML.split(/<li>|<\/li>|\r\n|\r|\n/);
+      if (lines.length > 10) {
+        alignToTop = true;
+        return;
+      }
+    });
+
+    table.querySelectorAll("tbody td").forEach((td) => {
+      if (alignToTop) td.style.verticalAlign = "top";
+      else td.style.verticalAlign = "middle";
+    });
+
+    var tds = table.querySelectorAll("tbody td");
+    tds.forEach(function (td) {
+      td.style.whiteSpace = "nowrap";
+      var textWidth = td.offsetWidth;
+      if (textWidth <= 250) {
+        td.style.minWidth = textWidth + "px";
+      } else {
+        td.style.minWidth = "280px";
+        td.style.maxWidth = "400px";
+        td.style.whiteSpace = "wrap";
+      }
+    });
+    var tableWidth = table.offsetWidth;
+
+    if (tableWidth > 300) {
+      table.style.width = "auto";
+
+      // Create a new div wrapper
+      var divWrapper = document.createElement("div");
+      divWrapper.style.width = "100%";
+      divWrapper.style.overflowX = "auto";
+      divWrapper.appendChild(table.cloneNode(true)); // Clone the table and append to the wrapper
+      table.parentNode.replaceChild(divWrapper, table); // Replace the original container with the wrapper
+    } else {
+      tds.forEach((td) => {
+        td.style.maxWidth = "none";
+      });
+      table.style.width = "auto";
+      table.style.overflowX = "hidden";
+    }
+  });
+}
+
 const renderer = {
   link(href, title, text) {
     if (href.match(/@drug-/g)) {
@@ -147,6 +197,9 @@ function loadMD(input) {
       }
     }
   }
+
+  // update tableStyle
+  tableStyle();
 
   // replace code for Mermaid
   const mermaidCodeElements = document.querySelectorAll("code.language-mermaid");
